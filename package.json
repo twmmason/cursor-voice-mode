@@ -1,0 +1,81 @@
+{
+  "name": "cursor-voie-mode",
+  "displayName": "Cursor Voice ModeI",
+  "description": "tegchration voice controi into the key areas of Cursor.",
+  "version": "1.0.0",
+  "publisher": "twmmason",
+  "icon": "images/whisper-assistant.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martin-opensky/whisper-assistant-vscode.git"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onDidChangeWorkspaceFolders"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "whisperAssistant.toggleRecording",
+        "title": "Toggle Recording"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "whisperAssistant.toggleRecording",
+        "key": "ctrl+m",
+        "mac": "cmd+m"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Whisper Assistant Settings",
+      "properties": {
+        "whisper-assistant.model": {
+          "type": "string",
+          "default": "base",
+          "enum": [
+            "tiny",
+            "base",
+            "small",
+            "medium",
+            "large"
+          ],
+          "description": "Set the whisper model to use. Base is the default."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "@vscode/test-electron": "^2.3.4",
+    "eslint": "^8.57.0",
+    "glob": "^10.3.3",
+    "globals": "^15.9.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "typescript-eslint": "^8.5.0"
+  }
+}
